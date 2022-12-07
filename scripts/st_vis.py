@@ -22,7 +22,7 @@ chronicle_select = st.multiselect(
 
 # read df for plotly
 # ../data/test_df.pkl
-df = pack(file_name='../data/test_df.pkl',mode='rb')
+df = pack(file_name='data/test_df.pkl',mode='rb')
 # la	lo	hover	date_belong location  raw_location
 
 
