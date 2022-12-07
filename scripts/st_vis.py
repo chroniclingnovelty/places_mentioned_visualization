@@ -7,9 +7,12 @@ import plotly.graph_objects as go
 import plotly.express as px
 import time
 
+
 # ../20221122/1791_Purm_Louw_04.xlsx
 # ../20221122/1791_Purm_Louw_04.xml
-start_time = time.time()
+st.session_state.update(st.session_state)
+
+# start_time = time.time()
 chronicle_select = st.multiselect(
     'select chronicles: ',
     ['1791_Purm_Louw_04'],
@@ -19,7 +22,7 @@ chronicle_select = st.multiselect(
 
 # read df for plotly
 # ../data/test_df.pkl
-df = pack(file_name='data/test_df.pkl',mode='rb')
+df = pack(file_name='../data/test_df.pkl',mode='rb')
 # la	lo	hover	date_belong location  raw_location
 
 
