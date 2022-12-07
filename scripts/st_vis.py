@@ -45,7 +45,7 @@ for i in date_list:
         select_date.append(i)
 
 
-
+plot_spot = st.empty()
 df_select = df.loc[df['date_belong'].isin(select_date)]
 d = go.Scattermapbox(lat = df_select['la'],
                         lon = df_select['lo'],
@@ -55,7 +55,7 @@ d = go.Scattermapbox(lat = df_select['la'],
                         # name = str(i),
                         hoverinfo='text')
 
-   
+
 Fig = go.Figure(d)
 Fig.update_layout(mapbox=dict(style='open-street-map',
                               center=dict(lat=52.3,lon=4.9),
@@ -65,7 +65,9 @@ Fig.update_layout(mapbox=dict(style='open-street-map',
 Fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 Fig.update_layout(legend=dict(y=0.2,x=1))
 # Fig.write_html('test.html')
-st.plotly_chart(Fig)
+
+with plot_spot:
+    st.plotly_chart(Fig)
 
 
 if __name__ == "__main__":
