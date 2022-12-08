@@ -10,7 +10,7 @@ import time
 
 # ../20221122/1791_Purm_Louw_04.xlsx
 # ../20221122/1791_Purm_Louw_04.xml
-st.session_state.update(st.session_state)
+# st.session_state.update(st.session_state)
 
 # start_time = time.time()
 chronicle_select = st.multiselect(
@@ -25,53 +25,48 @@ chronicle_select = st.multiselect(
 df = pack(file_name='data/test_df.pkl',mode='rb')
 # la	lo	hover	date_belong location  raw_location
 
+# title
+st.title("Plotly map test")
 
 # date range slider 
 date_list = []
 for i in df['date_belong'].tolist():
-    date_list.append(string_to_date(i))# date(*[int(j) for j in i.split('-')]))
+    date_list.append(string_to_date(i)) # date(*[int(j) for j in i.split('-')]))
 df['date_belong'] = date_list
 date_list = sorted(date_list)
 
-date_range = st.slider(
+d1,d2 = st.slider(
     "select date range or point:",
-    value=(date_list[0], date_list[-1]))
+    date_list[0], date_list[-1],value=(date_list[0],date_list[10]))
 
 
-
-select_date = []
-for i in date_list:
-    if (i <= date_range[1]) & (i >= date_range[0]):
-        select_date.append(i)
-
-
+# empty spot reserved
 plot_spot = st.empty()
-df_select = df.loc[df['date_belong'].isin(select_date)]
-d = go.Scattermapbox(lat = df_select['la'],
-                        lon = df_select['lo'],
-                        mode='markers',
-                        marker = dict(size=12), # go.scattermapbox.Marker
-                        text = df_select['hover'].tolist(),
-                        # name = str(i),
-                        hoverinfo='text')
 
 
-Fig = go.Figure(d)
+# plotly map
+df_select = df.loc[(df['date_belong']<=d2)&(df['date_belong']>=d1),:]
+df_select.loc[:,'size'] = 6
+Fig = px.scatter_mapbox(df_select,
+                        lat='la',lon='lo',
+                        hover_name='hover',
+                        size_max=11,
+                        size='size',
+                        width=1000,height=600)
+
 Fig.update_layout(mapbox=dict(style='open-street-map',
-                              center=dict(lat=52.3,lon=4.9),
-                              zoom=5
-                              )
-                              )
-Fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-Fig.update_layout(legend=dict(y=0.2,x=1))
-# Fig.write_html('test.html')
+                  center=dict(lat=52.3,lon=4.9),
+                  zoom=5),
+                  margin={"r":0,"t":0,"l":0,"b":0},
+                      # legend=dict(y=0.2,x=1)
+                                )
 
+# fill the spot
 with plot_spot:
     st.plotly_chart(Fig)
 
-
 if __name__ == "__main__":
-    # pass
+    pass
     # st.write('You selected:', chronicle_select)
-    st.write("date range: ", date_range)
-    print('*********************************************************')
+    # st.write("date range: ", date_range)
+    # print('*********************************************************')
