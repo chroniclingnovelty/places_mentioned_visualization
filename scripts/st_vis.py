@@ -44,8 +44,7 @@ with st.sidebar:
     # chronicle_selects: list
 # st.write("Selected options:", selected_options)
 
-# empty spot reserved
-plot_spot = st.empty()
+
 Figs = px.scatter_mapbox(lat=[],lon=[])
 fig_traces = []
 summary_tables = []
@@ -115,7 +114,7 @@ d1,d2 = st.slider(
     date_list[0], date_list[-1],value=(date_list[0],date_list[10]))
 
 
-print(map_dfs.head())
+# print(map_dfs.head())
 # if matched location is the same, jitter around the la/lo
 map_dfs['la_jitter'] = map_dfs['la'].apply(lambda x: x + np.random.normal(0, 0.05))
 map_dfs['lo_jitter'] = map_dfs['lo'].apply(lambda x: x + np.random.normal(0, 0.05))
@@ -191,7 +190,8 @@ for chronicle_select in chronicle_selects:
     fig_traces.extend(Fig.data)
 
 
-
+# empty spot reserved
+plot_spot = st.empty()
 Figs = go.Figure(data=fig_traces)
 Figs.update_layout(mapbox=dict(style='open-street-map',
                   center=dict(lat=52.3,lon=4.9),
