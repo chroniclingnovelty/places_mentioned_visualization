@@ -44,7 +44,8 @@ with st.sidebar:
     # chronicle_selects: list
 # st.write("Selected options:", selected_options)
 
-
+# empty spot reserved
+plot_spot = st.empty()
 Figs = px.scatter_mapbox(lat=[],lon=[])
 fig_traces = []
 summary_tables = []
@@ -200,9 +201,9 @@ Figs.update_layout(mapbox=dict(style='open-street-map',
                   showlegend=False
                   # legend=dict(y=0.2,x=1)
                    )
-
-st.plotly_chart(Figs, use_container_width=True, height=800,
-                ) 
+with plot_spot:
+    st.plotly_chart(Figs, use_container_width=True, height=800,
+                    ) 
 
 
 
