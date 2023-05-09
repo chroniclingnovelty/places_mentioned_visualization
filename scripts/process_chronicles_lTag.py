@@ -84,20 +84,24 @@ class ChronicleBucket:
         locatie_date_dict = {}
 
         xml = self.meta_xml
-        lorder = self.l_order()
-        all_range_date = self.filter_date_range()
+        # lorder = self.l_order()
+        # all_range_date = self.filter_date_range()
         for l in xml.find_all('l'):
             for ele in l:
                 if ele.name == 'locatie':
                     all_locatie_count += 1
                     try:
-                        locatie_date = ele.findPrevious(name='datum',in_range = 'yes')# all_range_date)
+                        locatie_date = ele.findPrevious(name='datum',
+                                                        datum=re.compile("^(177\d|178\d|179\d|180\d|181\d)-\d{2}-\w{2}$"))
+                                                        # in_range=all_range_date)
+                                                        # all_range_date)
                                                         # re.compile("\d{4}-\d{2}-\w{2}"))
+
                         if locatie_date:
                             normaled_date = locatie_date['datum']
                             locatie_with_date_count += 1
                             locatie_date_l = locatie_date.findPrevious(name='l')['facs']
-                            d = lorder[l['facs']]-lorder[locatie_date_l]
+                            # d = lorder[l['facs']]-lorder[locatie_date_l]
                             ma = self.mapping_location.get(ele.text.strip().lower())
                             if ma:
                                 locatie_matched += 1
@@ -105,17 +109,17 @@ class ChronicleBucket:
                                                             "locatie_match": ma,
                                                             "locatie_date_l": locatie_date_l,
                                                             "normal_date": normaled_date,
-                                                            "locatie_date_distance":d,
+                                                            # "locatie_date_distance":d,
                                                             "locatie_lines":findNlines(l,n=nlines)}
 
                             # print(f"location l: {l['facs']}")
                             # print(f"date l: {locatie_date_l}")
                             # print(f"date: {normaled_date}")
                             # print('_______')
-                            locate_date_distance.append(lorder[l['facs']]-lorder[locatie_date_l])
+                            # locate_date_distance.append(lorder[l['facs']]-lorder[locatie_date_l])
                     except:
                         pass
-        return locatie_date_dict, {"locatie_date_distance": locate_date_distance, 
+        return locatie_date_dict, {# "locatie_date_distance": locate_date_distance, 
                                    "all_locatie_count": all_locatie_count,
                                    "locatie_with_date_count": locatie_with_date_count,
                                    "locatie_matched": locatie_matched}
