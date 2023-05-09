@@ -11,7 +11,9 @@ from helper import *
 
 
 class ChronicleBucket:
-    with open('../data/location_mapping.pkl', 'rb') as f:
+    # /app/chronicle_vis_project/scripts/
+    # ../data/location_mapping.pkl
+    with open('/app/chronicle_vis_project/data/location_mapping.pkl', 'rb') as f:
         mapping_location = pickle.load(f)
 
     def __init__(self,xml_path=None):

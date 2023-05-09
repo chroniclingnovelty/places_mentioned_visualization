@@ -24,11 +24,11 @@ chronicle_list = ['1795_Mege_Loef', '1797_Brst_Mori', '1796_Antw_Aars', '1802_Ve
 
 chronicle_colors = dict(zip(chronicle_list, px.colors.qualitative.Dark24[0:len(chronicle_list)]))
 
-
-with open("../data/Chronicle-Center.pickle", "rb") as f:
+# /app/chronicle_vis_project/
+with open("/app/chronicle_vis_project/data/Chronicle-Center.pickle", "rb") as f:
     chronicle_center = pickle.load(f)
 
-with open("../data/ChronicleDict.pickle",'rb') as f:
+with open("/app/chronicle_vis_project/data/ChronicleDict.pickle",'rb') as f:
     o_dict = pickle.load(f)
 
 ###### sidebar 
