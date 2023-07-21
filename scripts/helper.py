@@ -2,6 +2,7 @@ import textwrap
 import pickle
 import datetime,re
 import pandas as pd
+import numpy as np
 import plotly.graph_objects as go
 
 def cut_sib(sib,char_per_line = 50):
@@ -45,7 +46,11 @@ def string_to_date(string):
         d = datetime.date(int(_[0]),int(_[1]),int(_[2]))
         return d
     except:
-        print(f"{_} ???")
+        # print(f"{_} ???")
+        _ = [i.replace('xx','01') for i in _]
+        _ = [i.replace('XX','01') for i in _]
+        return datetime.date(int(_[0]),int(_[1]),int(_[2]))
+
         
 
 def join_line(line):
@@ -222,3 +227,24 @@ def generate_timeline(xml_name, xml):
     #     xaxis_title="chronicle context order (the N th appeared date tag)",
     #     yaxis_title="date")
     return f
+
+def circle_coordinate(test_se, offset_radius=0.1):
+    # test_se: filter chronicle and address for corrected_mapping_filter
+    # corrected_mapping_filter: chronicle ID and lat/lon, hover, belong_date ...
+
+    test_se_ = test_se.sort_values(['chronicle', 'belong_date'])
+    test_se_ = test_se_.reset_index(drop=True)
+    dup_counts = test_se_.groupby(['lat', 'lng']).size().reset_index(name='counts')
+    # print(dup_counts)
+    test_se_ = pd.merge(test_se_, dup_counts, on=['lat', 'lng'], how='left')
+    test_se_['offset_angle'] = 2.0 * np.pi * (test_se_.groupby(['lat', 'lng']).cumcount() / test_se_['counts'])
+    test_se_['offset_latitude'] = test_se_['lat'] + offset_radius * np.sin(test_se_['offset_angle'])
+    test_se_['offset_longitude'] = test_se_['lng'] + offset_radius * np.cos(test_se_['offset_angle'])
+
+    test_se_['lat'] = np.where(test_se_['counts'] > 1, test_se_['offset_latitude'], test_se_['lat'])
+    test_se_['lng'] = np.where(test_se_['counts'] > 1, test_se_['offset_longitude'], test_se_['lng'])
+
+    test_se_ = test_se_.drop(columns=['counts', 'offset_angle', 'offset_latitude', 'offset_longitude'])
+
+    return test_se_
+
