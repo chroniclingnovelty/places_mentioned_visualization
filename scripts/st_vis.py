@@ -16,7 +16,7 @@ st.title("Chronicles visualization")
 # /app/chronicle_vis_project/data/
 maps_df = pd.read_csv("/app/chronicle_vis_project/data/corrected_mapping_filter.csv",index_col=0)
 maps_df = maps_df.loc[maps_df['address'].notnull(),:]
-with open("/app/chronicle_vis_project/data/data/Chronicle-Center-new.pickle", "rb") as f:
+with open("/app/chronicle_vis_project/data/Chronicle-Center-new.pickle", "rb") as f:
     chronicle_center = pickle.load(f)
 summary_table = pd.read_csv('/app/chronicle_vis_project/data/summary_table.csv',index_col=0)
 
