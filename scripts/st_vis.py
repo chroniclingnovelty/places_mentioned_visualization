@@ -11,14 +11,17 @@ from process_chronicles_lTag import *
 from helper import *
 import pickle
 
-st.title("Chronicles visualization")
+st.title("Horizons of interest: Places mentioned in chronicles 1770-1815")
 
-# /app/chronicle_vis_project/data/
-maps_df = pd.read_csv("/app/chronicle_vis_project/data/corrected_mapping_filter.csv",index_col=0)
+
+# /app/chronicle_vis_project/data/corrected_mapping_filter.csv
+maps_df = pd.read_csv("/app/chronicle_vis_project/data/corrected_mapping_filter_rm_chronicle_loc.csv",index_col=0)
 maps_df = maps_df.loc[maps_df['address'].notnull(),:]
 with open("/app/chronicle_vis_project/data/Chronicle-Center-new.pickle", "rb") as f:
     chronicle_center = pickle.load(f)
-summary_table = pd.read_csv('/app/chronicle_vis_project/data/summary_table.csv',index_col=0)
+
+# ../data/summary_table.csv
+summary_table = pd.read_csv('/app/chronicle_vis_project/data/summary_table_rm_chronicle_loc.csv',index_col=0)
 
 
 chronicle_list = maps_df['chronicle'].unique()
