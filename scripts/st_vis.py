@@ -12,8 +12,8 @@ from helper import *
 import pickle
 from pathlib import Path
 
-data_dir = Path.cwd().parent
-print(data_dir)
+data_dir = Path.cwd() / 'data'
+# print(data_dir / 'corrected_mapping_filter_rm_chronicle_loc.csv')
 
 st.set_page_config(layout="wide") 
 st.title("Horizons of interest: Places mentioned in chronicles 1770-1815")
