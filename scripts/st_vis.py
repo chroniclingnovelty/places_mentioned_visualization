@@ -10,13 +10,18 @@ import plotly.express as px
 # from process_chronicles_lTag import *
 from helper import *
 import pickle
+from pathlib import Path
 
+data_dir = Path.cwd().parent
+print(data_dir)
 
 st.set_page_config(layout="wide") 
 st.title("Horizons of interest: Places mentioned in chronicles 1770-1815")
 
 # /app/chronicle_vis_project/data/corrected_mapping_filter.csv
-maps_df = pd.read_csv("/app/chronicle_vis_project/data/corrected_mapping_filter_rm_chronicle_loc.csv",index_col=0)
+# maps_df = pd.read_csv("/app/chronicle_vis_project/data/corrected_mapping_filter_rm_chronicle_loc.csv",index_col=0)
+maps_df_dir = data_dir / 'corrected_mapping_filter_rm_chronicle_loc.csv'
+maps_df = pd.read_csv(maps_df_dir,index_col=0)
 maps_df = maps_df.loc[maps_df['address'].notnull(),:]
 with open("/app/chronicle_vis_project/data/Chronicle-Center-new.pickle", "rb") as f:
     chronicle_center = pickle.load(f)
