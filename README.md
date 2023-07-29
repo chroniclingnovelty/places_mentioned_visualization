@@ -15,17 +15,17 @@ The mentioned location (with a locatie tag)'s date is defined as the nearest dat
 
 
 ## Scripts
-`./script/process_chronicles_ITag.py`     
+`../script/process_chronicles_ITag.py`     
 Extract location and date information from XML file.    
 
-`./script/mapping.ipynb`         
+`../script/mapping.ipynb`         
 Generate preprocessed data for map visualization. 
 
-`./script/multiple_chronicles_new.ipynb`        
+`../script/multiple_chronicles_new.ipynb`        
 Generate preprocessed data & some exploration of the locations and dates tags.    
 
 
-`./script/st_vis.py`    
+`../script/st_vis.py`    
 Visualize the map via Streamlit. 
 
 ## Preprocessed data for map visualization
@@ -40,7 +40,7 @@ _true_place:_ corresponding modern name for the raw locations
 _rownames:_ chronicles contents with mentioned locations.    
 <br>
 
-`./data/Chronicle-Center-new.pickle`     
+`../data/Chronicle-Center-new.pickle`     
 A dictionary. Keys are names of the chronicles, values contains matched place (where the chronicle is written), latitude and longtitude of the place. Generated from script `mapping.ipynb`. 
 ```
 {'1793_Bred_Ouko': {'match_place': 'Breda', 'la': '51.58656', 'lo': '4.77596'},    
@@ -48,7 +48,7 @@ A dictionary. Keys are names of the chronicles, values contains matched place (w
 ```     
 <br>    
 
-`/app/chronicle_vis_project/data/summary_table.csv`    
+`../data/summary_table.csv`    
 A summary of the corrected_mapping_filter.
 
 
@@ -57,7 +57,7 @@ A summary of the corrected_mapping_filter.
 ## Map App instruction
 [https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/](https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/)
 
-
+![demo vedio]('https://github.com/CS0000/chronicle_vis_project/blob/main/plots/demo.mp4')
 
 
 
