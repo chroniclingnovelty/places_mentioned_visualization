@@ -58,11 +58,8 @@ A summary of the corrected_mapping_filter.
 [https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/](https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/)
 
 
-
-[![Demo](https://img.youtube.com/vi/no0X1ep6fA4/default.jpg)](https://youtu.be/no0X1ep6fA4)
-
-
-
+<video src="https://youtu.be/no0X1ep6fA4" controls="controls" style="max-width: 730px;">
+</video>
 
        
 
