@@ -11,8 +11,9 @@ from process_chronicles_lTag import *
 from helper import *
 import pickle
 
-st.title("Horizons of interest: Places mentioned in chronicles 1770-1815")
 
+st.set_page_config(layout="wide") 
+st.title("Horizons of interest: Places mentioned in chronicles 1770-1815")
 
 # /app/chronicle_vis_project/data/corrected_mapping_filter.csv
 maps_df = pd.read_csv("/app/chronicle_vis_project/data/corrected_mapping_filter_rm_chronicle_loc.csv",index_col=0)
