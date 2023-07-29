@@ -17,17 +17,20 @@ data_dir = Path.cwd() / 'data'
 
 st.set_page_config(layout="wide") 
 st.title("Horizons of interest: Places mentioned in chronicles 1770-1815")
-st.text(data_dir)
+# st.text(data_dir)
 # /app/chronicle_vis_project/data/corrected_mapping_filter.csv
 # maps_df = pd.read_csv("/app/chronicle_vis_project/data/corrected_mapping_filter_rm_chronicle_loc.csv",index_col=0)
 maps_df_dir = data_dir / 'corrected_mapping_filter_rm_chronicle_loc.csv'
 maps_df = pd.read_csv(maps_df_dir,index_col=0)
 maps_df = maps_df.loc[maps_df['address'].notnull(),:]
-with open("/app/chronicle_vis_project/data/Chronicle-Center-new.pickle", "rb") as f:
+
+cc_dir = data_dir / 'Chronicle-Center-new.pickle'
+with open(cc_dir, "rb") as f:
     chronicle_center = pickle.load(f)
 
 # ../data/summary_table.csv
-summary_table = pd.read_csv('/app/chronicle_vis_project/data/summary_table_rm_chronicle_loc.csv',index_col=0)
+summary_dir = data_dir / 'summary_table_rm_chronicle_loc.csv'
+summary_table = pd.read_csv(summary_dir,index_col=0)
 
 
 chronicle_list = maps_df['chronicle'].unique()
