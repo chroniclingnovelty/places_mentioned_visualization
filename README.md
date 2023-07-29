@@ -57,9 +57,8 @@ A summary of the corrected_mapping_filter.
 ## Map App instruction
 [https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/](https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/)
 
+[![app demo](https://img.youtube.com/vi/no0X1ep6fA4/0.jpg)](https://youtu.be/no0X1ep6fA4)
 
-<video src="[https://youtu.be/no0X1ep6fA4](https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/)https://cs0000-chronicle-vis-project-scriptsst-vis-njcubc.streamlit.app/" controls="controls" style="max-width: 730px;">
-</video>
 
        
 
